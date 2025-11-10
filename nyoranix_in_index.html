@@ -3,100 +3,212 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nyoranix — Innovating the Future</title>
-  <meta name="description" content="Nyoranix — Electronics, IoT & Embedded Systems development and components supply." />
+  <title>Nyoranix Store — Electronic Components & Modules</title>
+  <meta name="description" content="Nyoranix — Buy electronic components, sensors, modules and development boards." />
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#9aa4b2;color-scheme:dark}
+    /* Simple modern e‑commerce layout (single file) */
+    :root{--bg:#f6f8fb;--card:#ffffff;--muted:#6b7280;--accent:#0ea5a4;--accent-contrast:#052025}
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#e6eef6;background:linear-gradient(180deg,#071025 0%,#081126 100%);-webkit-font-smoothing:antialiased}
-    .wrap{max-width:980px;margin:40px auto;padding:28px}
-    header{display:flex;align-items:center;gap:18px}
-    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#032;box-shadow:0 6px 18px rgba(6,182,212,.12)}
-    h1{margin:0;font-size:28px}
-    p.lead{color:var(--muted);margin-top:6px}
-    .hero{display:grid;grid-template-columns:1fr;gap:18px;margin-top:22px}
-    .card{background:rgba(255,255,255,.02);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,.6)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    .btn-primary{background:var(--accent);color:#04263a}
-    footer{margin-top:26px;color:var(--muted);font-size:14px}
-    pre{background:#021224;padding:12px;border-radius:8px;overflow:auto}
-    @media(min-width:720px){.hero{grid-template-columns:1fr 320px}}
+    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f1724}
+    header{background:#fff;border-bottom:1px solid #e6e9ef;position:sticky;top:0;z-index:20}
+    .wrap{max-width:1200px;margin:0 auto;padding:18px}
+    .topbar{display:flex;align-items:center;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    nav{margin-left:auto;display:flex;align-items:center;gap:12px}
+    .search{flex:1;max-width:520px;display:flex;gap:8px;background:#f1f5f9;padding:8px;border-radius:10px}
+    .search input{border:0;background:transparent;outline:none;font-size:15px}
+    .btn{background:var(--accent);color:var(--accent-contrast);padding:10px 12px;border-radius:10px;text-decoration:none;border:0;font-weight:600}
+    main{max-width:1200px;margin:20px auto;padding:18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,.06);display:flex;flex-direction:column}
+    .thumb{height:160px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#f8fafc;margin-bottom:10px}
+    .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+    h3{margin:6px 0 0 0;font-size:16px}
+    .price{margin-top:auto;font-weight:700}
+    .meta{color:var(--muted);font-size:13px}
+    .controls{display:flex;gap:8px;margin-top:10px}
+    .chip{background:#f1f5f9;padding:6px 8px;border-radius:999px;font-size:13px}
+    .sidebar{width:280px}
+    .layout{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:960px){.layout{grid-template-columns:1fr 300px}}
+    footer{max-width:1200px;margin:28px auto;padding:18px;color:var(--muted);font-size:14px}
+    .cart-btn{position:relative}
+    .cart-count{position:absolute;top:-6px;right:-6px;background:#ef4444;color:white;border-radius:999px;padding:4px 7px;font-size:12px}
+    /* small helpers */
+    .muted{color:var(--muted)}
+    a.small{font-size:13px;color:var(--muted);text-decoration:none}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">N</div>
-      <div>
-        <h1>Nyoranix</h1>
-        <p class="lead">Electronics • IoT • Embedded Systems — Development & Components Supply</p>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="#">
+        <div class="logo">N</div>
+        <div>
+          <div style="font-weight:700">Nyoranix Store</div>
+          <div style="font-size:12px;color:var(--muted)">Electronic components & modules</div>
+        </div>
+      </a>
+
+      <div class="search" role="search">
+        <input id="searchInput" placeholder="Search resistors, sensors, modules, dev boards..." aria-label="Search products" />
+        <button class="btn" id="searchBtn">Search</button>
       </div>
-    </header>
 
-    <section class="hero">
-      <div class="card">
-        <h2>Welcome to Nyoranix</h2>
-        <p class="lead">This is a simple, fast static site ready to host on GitHub Pages. Replace this content with your own HTML, images and links.</p>
+      <nav>
+        <button class="btn" id="viewCartBtn">Cart <span class="cart-count" id="cartCount">0</span></button>
+      </nav>
+    </div>
+  </header>
 
-        <div class="grid">
-          <div class="card">
-            <h3>What we do</h3>
-            <ul>
-              <li>Custom robotics & automation</li>
-              <li>IoT systems & cloud integrations</li>
-              <li>Embedded firmware & PCB support</li>
-              <li>Supply of components & modules</li>
-            </ul>
-          </div>
+  <main>
+    <div class="wrap layout">
+      <section>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h2 style="margin:0">Featured Components</h2>
+          <div class="muted">Showing <span id="resultCount">0</span> products</div>
+        </div>
 
-          <div class="card">
-            <h3>Quick actions</h3>
-            <p>
-              <a class="btn btn-primary" href="https://github.com/" target="_blank" rel="noopener">Create GitHub repo</a>
-            </p>
-            <p style="margin-top:8px;color:var(--muted)">Or download this file and push it to your repository as <code>index.html</code>.</p>
+        <div id="productGrid" class="grid" aria-live="polite"></div>
+      </section>
+
+      <aside class="sidebar card">
+        <h3 style="margin-top:0">Filters</h3>
+        <div style="margin-top:8px">
+          <div class="muted">Category</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+            <button class="chip" data-cat="all">All</button>
+            <button class="chip" data-cat="sensors">Sensors</button>
+            <button class="chip" data-cat="modules">Modules</button>
+            <button class="chip" data-cat="passives">Passives</button>
+            <button class="chip" data-cat="devboards">Dev Boards</button>
           </div>
         </div>
 
-        <h3 style="margin-top:14px">Contact</h3>
-        <p style="color:var(--muted)">Email: info@nyoranix.in (replace with your preferred contact)</p>
-      </div>
-
-      <aside class="card">
-        <h3>Hosting checklist</h3>
-        <ol>
-          <li>Create a GitHub repo (see steps below)</li>
-          <li>Add this <code>index.html</code> to the repo root</li>
-          <li>Enable GitHub Pages (branch: <code>main</code>, folder: <code>/ (root)</code>)</li>
-          <li>If using custom domain <code>nyoranix.in</code>, add a <code>CNAME</code> file with that domain and configure DNS records</li>
-        </ol>
-
-        <h4>Notes</h4>
-        <p style="color:var(--muted);font-size:13px">GitHub Pages will provide HTTPS automatically after DNS configuration propagates.</p>
+        <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f6" />
+        <h4 style="margin:0">Cart</h4>
+        <div id="miniCart" style="margin-top:8px"></div>
+        <div style="margin-top:12px">
+          <a class="btn" id="checkoutBtn">Go to Checkout</a>
+        </div>
       </aside>
-    </section>
+    </div>
+  </main>
 
-    <footer>
-      <div class="card">
-        <strong>Small deploy guide (commands)</strong>
-        <pre>
-# in terminal
-mkdir nyoranix-site
-cd nyoranix-site
-git init
-# create index.html (save this file)
-# then
-git add index.html
-git commit -m "Initial site"
-# create repo on GitHub and add remote (replace URL)
-git remote add origin https://github.com/YOURUSERNAME/nyoranix-site.git
-git branch -M main
-git push -u origin main
-        </pre>
-        <p style="color:var(--muted);margin-top:8px">After pushing, go to your repository → Settings → Pages and set Source to <code>main</code> / root. Add a CNAME file if you want the custom domain.</p>
-      </div>
-    </footer>
-  </div>
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> Nyoranix — Electronics • IoT • Embedded Systems
+    </div>
+  </footer>
+
+  <script>
+    // Sample product data (replace with your real product list or fetch from API)
+    const PRODUCTS = [
+      {id:1,name:"ESP32 Dev Board",category:"devboards",price:599,sku:"ESP32-DEV",img:"https://via.placeholder.com/240x140?text=ESP32"},
+      {id:2,name:"HC-SR04 Ultrasonic Sensor",category:"sensors",price:49,sku:"HC-SR04",img:"https://via.placeholder.com/240x140?text=Ultrasonic"},
+      {id:3,name:"16x2 LCD Module",category:"modules",price:199,sku:"LCD16x2",img:"https://via.placeholder.com/240x140?text=LCD"},
+      {id:4,name:"SMD Resistor Pack (1k, 100 pcs)",category:"passives",price:129,sku:"R1K-100",img:"https://via.placeholder.com/240x140?text=Resistors"},
+      {id:5,name:"BMP280 Pressure Sensor",category:"sensors",price:149,sku:"BMP280",img:"https://via.placeholder.com/240x140?text=BMP280"},
+      {id:6,name:"WiFi Relay Module",category:"modules",price:249,sku:"RELAY-WF",img:"https://via.placeholder.com/240x140?text=Relay"}
+    ];
+
+    // Cart stored in localStorage
+    const CART_KEY = 'nyoranix_cart_v1';
+    let cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+
+    function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+    function addToCart(id, qty=1){ cart[id] = (cart[id]||0)+qty; saveCart(); }
+    function removeFromCart(id){ delete cart[id]; saveCart(); }
+
+    function formatPrice(n){ return '₹' + n.toFixed(2); }
+
+    // Render products
+    const grid = document.getElementById('productGrid');
+    const resultCount = document.getElementById('resultCount');
+
+    function renderProducts(list){
+      grid.innerHTML = '';
+      list.forEach(p=>{
+        const el = document.createElement('div'); el.className='card';
+        el.innerHTML = `
+          <div class="thumb"><img src="${p.img}" alt="${p.name}"></div>
+          <div class="meta">SKU: ${p.sku}</div>
+          <h3>${p.name}</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">${formatPrice(p.price)}</div>
+          </div>
+          <div class="controls">
+            <button class="btn" data-add="${p.id}">Add to cart</button>
+            <a class="small" href="#" data-view="${p.id}">View</a>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+      resultCount.textContent = list.length;
+    }
+
+    // Filters
+    document.querySelectorAll('.chip').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const cat = btn.dataset.cat;
+        const filtered = cat==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.category===cat);
+        renderProducts(filtered);
+      });
+    });
+
+    // Search
+    document.getElementById('searchBtn').addEventListener('click', ()=>{
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const res = PRODUCTS.filter(p=>p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q));
+      renderProducts(res);
+    });
+
+    document.getElementById('searchInput').addEventListener('keydown',(e)=>{ if(e.key==='Enter') document.getElementById('searchBtn').click(); });
+
+    // Product button actions
+    document.addEventListener('click',(e)=>{
+      if(e.target.dataset.add){ addToCart(e.target.dataset.add*1); }
+      if(e.target.dataset.view){ const id = e.target.dataset.view*1; alert('Product: '+PRODUCTS.find(p=>p.id===id).name); }
+    });
+
+    // Cart UI
+    function updateCartUI(){
+      const mini = document.getElementById('miniCart'); mini.innerHTML='';
+      const keys = Object.keys(cart);
+      let total=0, count=0;
+      if(keys.length===0){ mini.innerHTML = '<div class="muted">Cart is empty</div>'; }
+      else{
+        keys.forEach(k=>{
+          const p = PRODUCTS.find(pp=>pp.id==k);
+          const qty = cart[k];
+          count += qty;
+          total += p.price * qty;
+          const row = document.createElement('div'); row.style.display='flex';row.style.justifyContent='space-between';row.style.marginTop='6px';
+          row.innerHTML = `<div style="font-size:14px">${p.name} × ${qty}</div><div style="font-weight:700">${formatPrice(p.price*qty)}</div>`;
+          mini.appendChild(row);
+        });
+        const tot = document.createElement('div'); tot.style.marginTop='10px'; tot.style.fontWeight='800'; tot.textContent = 'Total: '+formatPrice(total);
+        mini.appendChild(tot);
+      }
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    document.getElementById('viewCartBtn').addEventListener('click',()=>{
+      const keys = Object.keys(cart);
+      if(keys.length===0) return alert('Cart is empty');
+      let msg = 'Your cart:\n\n';
+      keys.forEach(k=>{ const p = PRODUCTS.find(pp=>pp.id==k); msg += `${p.name} × ${cart[k]} — ${formatPrice(p.price*cart[k])}\n`; });
+      msg += '\nProceed to checkout on your site backend.';
+      alert(msg);
+    });
+
+    document.getElementById('checkoutBtn').addEventListener('click',()=>{ document.getElementById('viewCartBtn').click(); });
+
+    // init
+    renderProducts(PRODUCTS);
+    updateCartUI();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
